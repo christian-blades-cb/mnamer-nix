@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "mnamer-nix"
+version = "0.1.0"
+description = ""
+authors = ["Christian Blades"]
+readme = "README.md"
+packages = [{ include = "mnamer-nix" }]
+
+[tool.poetry.scripts]
+mnamer = "mnamer.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mnamer = "2.5.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
