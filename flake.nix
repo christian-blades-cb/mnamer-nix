@@ -20,7 +20,7 @@
         inherit (p2n) mkPoetryApplication;
       in
         {
-          packages.default = mkPoetryApplication {
+          packages.mnamer = mkPoetryApplication {
             projectDir = ./.;
             overrides = p2n.overrides.withDefaults (self: super: {
               babelfish = super.babelfish.overridePythonAttrs ( old: {
@@ -28,5 +28,10 @@
               });
             });
           };
-        });
+
+          packages.default = self.packages.${system}.mnamer;
+
+        }) // {
+          overlays.mnamer = final: prev: { mnamer = self.packages.${prev.system}.mnamer; };
+        };
 }
